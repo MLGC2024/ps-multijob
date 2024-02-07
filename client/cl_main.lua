@@ -22,6 +22,7 @@ end
 
 RegisterNUICallback('selectjob', function(data, cb)
     TriggerServerEvent("ps-multijob:changeJob", data["name"], data["grade"])
+    TriggerEvent('wais:addmissionxp:changejobs', 1) --added by pamela for wais battlepass
     local onDuty = false
     if data["name"] ~= "police" then onDuty = QBCore.Shared.Jobs[data["name"]].defaultDuty end
     cb({onDuty = onDuty})
@@ -50,6 +51,7 @@ RegisterNUICallback('toggleduty', function(data, cb)
     end
     
     TriggerServerEvent("QBCore:ToggleDuty")
+    TriggerEvent('wais:addmissionxp:duty', 1) --added by pamela for wais battlepass
 end)
 
 RegisterNetEvent('QBCore:Client:OnJobUpdate', function(JobInfo)
